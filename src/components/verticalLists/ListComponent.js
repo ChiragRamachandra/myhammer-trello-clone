@@ -9,6 +9,7 @@ const ListComponent = ({
 	onChangeListHandler,
 	onDeleteListHandler,
 	onAddCardHandler,
+	onChangeCardHandler,
 }) => {
 	const [show, setShow] = useState(false)
 	const [listTitle, setListTitle] = useState(allLists[listsKey].title)
@@ -60,6 +61,7 @@ const ListComponent = ({
 							listsKey={listsKey}
 							cardKey={cardKey}
 							allCards={allCards}
+							onChangeCardHandler={onChangeCardHandler}
 						/>
 					)
 				})}

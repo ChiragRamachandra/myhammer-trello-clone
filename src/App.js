@@ -92,6 +92,12 @@ const App = () => {
 		allLists[listKey].cards.push(`card-${objectLength}`)
 	}
 
+	const onChangeCardHandler = (cardKey, text) => {
+		let newCard = allCards[cardKey]
+		newCard.text = text
+		setAllCards({...allCards, [cardKey]: newCard})
+	}
+
 	return (
 		<Fragment>
 			<Header />
@@ -104,6 +110,7 @@ const App = () => {
 				onChangeListHandler={onChangeListHandler}
 				onDeleteListHandler={onDeleteListHandler}
 				onAddCardHandler={onAddCardHandler}
+				onChangeCardHandler={onChangeCardHandler}
 			/>
 		</Fragment>
 	)
