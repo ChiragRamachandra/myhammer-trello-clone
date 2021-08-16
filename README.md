@@ -29,8 +29,8 @@
 
 ### Initial Setup
 
-1. created new reactjs project
-2. Decided to use react-bootstrap with a theme to have consiistency
+1. created new reactjs project using npx create react app my-app
+2. Decided to use react-bootstrap with a simplex theme to have consiistency.
 
 ## Steps to install
 
