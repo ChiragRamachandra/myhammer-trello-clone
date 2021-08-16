@@ -127,6 +127,28 @@ const App = () => {
 		setAllCards(filteredInitialCard)
 	}
 
+	const onMoveCardHandler = (listKey, cardKey, previousListKey) => {
+		//move to new list
+		let newList = allLists[listKey]
+		newList.cards.push(cardKey)
+
+		setAllLists({
+			...allLists,
+			[`${listKey}`]: newList,
+		})
+
+		// remove from current list
+		let prevList = allLists[previousListKey]
+		prevList.cards = prevList.cards.filter((cardNumber) => {
+			return cardNumber !== cardKey
+		})
+
+		setAllLists({
+			...allLists,
+			[`${previousListKey}`]: prevList,
+		})
+	}
+
 	return (
 		<Fragment>
 			<Header />
@@ -141,6 +163,7 @@ const App = () => {
 				onAddCardHandler={onAddCardHandler}
 				onChangeCardHandler={onChangeCardHandler}
 				onDeleteCardHandler={onDeleteCardHandler}
+				onMoveCardHandler={onMoveCardHandler}
 			/>
 		</Fragment>
 	)

@@ -18,6 +18,7 @@ const BoardPage = ({
 	onAddCardHandler,
 	onChangeCardHandler,
 	onDeleteCardHandler,
+	onMoveCardHandler,
 }) => {
 	let displayColumn = []
 
@@ -35,6 +36,7 @@ const BoardPage = ({
 				onAddCardHandler={onAddCardHandler}
 				onChangeCardHandler={onChangeCardHandler}
 				onDeleteCardHandler={onDeleteCardHandler}
+				onMoveCardHandler={onMoveCardHandler}
 			/>,
 		]
 	})

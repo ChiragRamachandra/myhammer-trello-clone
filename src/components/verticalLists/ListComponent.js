@@ -11,6 +11,7 @@ const ListComponent = ({
 	onAddCardHandler,
 	onChangeCardHandler,
 	onDeleteCardHandler,
+	onMoveCardHandler,
 }) => {
 	const [show, setShow] = useState(false)
 	const [listTitle, setListTitle] = useState(allLists[listsKey].title)
@@ -61,9 +62,11 @@ const ListComponent = ({
 							key={cardKey}
 							listsKey={listsKey}
 							cardKey={cardKey}
+							allLists={allLists}
 							allCards={allCards}
 							onChangeCardHandler={onChangeCardHandler}
 							onDeleteCardHandler={onDeleteCardHandler}
+							onMoveCardHandler={onMoveCardHandler}
 						/>
 					)
 				})}

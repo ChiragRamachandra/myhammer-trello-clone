@@ -3,13 +3,27 @@ import {Button, Card, Form, FormControl, InputGroup} from 'react-bootstrap'
 
 const CardComponent = ({
 	allCards,
+	allLists,
 	listsKey,
 	cardKey,
 	onChangeCardHandler,
 	onDeleteCardHandler,
+	onMoveCardHandler,
 }) => {
 	const [show, setShow] = useState(false)
 	const [cardText, setCardText] = useState(allCards[cardKey].text)
+
+	let DropDownSelect = []
+
+	Object.keys(allLists).forEach(function (listKey) {
+		DropDownSelect = [
+			...DropDownSelect,
+			<option key={allLists[listKey].id} value={listKey}>
+				{allLists[listKey].title}
+			</option>,
+		]
+	})
+
 	return (
 		<Fragment>
 			<Card className=' m-2'>
@@ -58,6 +72,21 @@ const CardComponent = ({
 								</InputGroup.Append>
 							</InputGroup>
 						) : null}
+
+						<br />
+
+						<div>
+							<Form.Label>Change Card Status</Form.Label>
+							<Form.Control
+								value={listsKey}
+								onChange={(e) =>
+									onMoveCardHandler(e.target.value, cardKey, listsKey)
+								}
+								as='select'
+							>
+								{DropDownSelect}
+							</Form.Control>
+						</div>
 					</Card.Text>
 				</Card.Body>
 			</Card>
