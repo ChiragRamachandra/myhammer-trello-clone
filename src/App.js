@@ -29,10 +29,28 @@ let initialCards = {
 
 const App = () => {
 	//all states and functions are maintaines here for better readability
-	const [allLists, setallLists] = useState(initialLists)
-	const [allCards, setallCards] = useState(initialCards)
+	const [allLists, setAllLists] = useState(initialLists)
+	const [allCards, setAllCards] = useState(initialCards)
 
-	const [listName, setListName] = useState('')
+	//lists crud operations
+	const onAddListHandler = (listName) => {
+		// console.log('listname', listName)
+		let highestListID = Object.values(allLists).sort((a, b) => {
+			return b.id - a.id
+		})
+		let objectLength = highestListID[0].id + 1
+
+		let newList = {
+			title: `${listName}`,
+			id: `${objectLength}`,
+			cards: [],
+		}
+
+		setAllLists({
+			...allLists,
+			[`list-${objectLength}`]: newList,
+		})
+	}
 
 	return (
 		<Fragment>
@@ -42,8 +60,7 @@ const App = () => {
 			<BoardPage
 				allLists={allLists}
 				allCards={allCards}
-				listName={listName}
-				setListName={setListName}
+				onAddListHandler={onAddListHandler}
 			/>
 		</Fragment>
 	)

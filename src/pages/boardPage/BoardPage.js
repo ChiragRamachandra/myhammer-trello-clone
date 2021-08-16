@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState} from 'react'
 import {
 	Button,
 	Col,
@@ -9,8 +9,15 @@ import {
 } from 'react-bootstrap'
 import ListComponent from '../../components/verticalLists/ListComponent'
 
-const BoardPage = ({allLists, allCards, listName, setListName}) => {
+const BoardPage = ({
+	allLists,
+	allCards,
+
+	onAddListHandler,
+}) => {
 	let displayColumn = []
+
+	const [listName, setListName] = useState('')
 	Object.keys(allLists).forEach(function (listsKey) {
 		displayColumn = [
 			...displayColumn,
@@ -31,11 +38,19 @@ const BoardPage = ({allLists, allCards, listName, setListName}) => {
 						<InputGroup className='mb-3'>
 							<FormControl
 								placeholder='Add a new list'
+								name='new list'
 								value={listName}
-								onChange={(e) => setListName(e.targetvalue)}
+								onChange={(e) => setListName(e.target.value)}
 							/>
 							<InputGroup.Append>
-								<Button onClick={() => {}}>Add List</Button>
+								<Button
+									onClick={() => {
+										onAddListHandler(listName)
+										setListName('')
+									}}
+								>
+									Add List
+								</Button>
 							</InputGroup.Append>
 						</InputGroup>
 					</Col>
