@@ -45,12 +45,21 @@ const ListComponent = ({
 
 						<InputGroup.Append>
 							<Button
+								style={{borderRadius: 0}}
+								onClick={(e) => {
+									setShow(false)
+								}}
+							>
+								<i class='fas fa-window-close'></i>
+							</Button>
+							<Button
+								style={{borderRadius: 0}}
 								onClick={(e) => {
 									onChangeListHandler(listsKey, listTitle)
 									setShow(false)
 								}}
 							>
-								Save
+								<i class='fas fa-save'></i>
 							</Button>
 						</InputGroup.Append>
 					</InputGroup>
