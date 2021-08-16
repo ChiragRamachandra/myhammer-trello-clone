@@ -1,4 +1,4 @@
-# myHamme Frontend Coding Challenge
+# myHammer Frontend Coding Challenge
 
 ## App Functionality
 
