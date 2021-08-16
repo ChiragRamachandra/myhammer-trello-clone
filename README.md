@@ -29,7 +29,7 @@
 
 ### Approach to problem
 
-1. created new reactjs project using npx create react app my-app
+1. Created new reactjs project using npx create react app my-app
 2. Decided to use react-bootstrap with a simplex theme to have consistency.
 3. Finished all crud operations for lists
 4. Finished all crud operation for cards
