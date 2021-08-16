@@ -98,6 +98,35 @@ const App = () => {
 		setAllCards({...allCards, [cardKey]: newCard})
 	}
 
+	const onDeleteCardHandler = (cardKey, listKey) => {
+		let prevList = allLists[listKey]
+		if (prevList.cards) {
+			prevList.cards = prevList.cards.filter((cardNumber) => {
+				return cardNumber !== cardKey
+			})
+
+			setAllLists({
+				...allLists,
+				[`${listKey}`]: prevList,
+			})
+		}
+
+		let toBeRemovedCard = allCards[cardKey]
+
+		let filteredInitialCard = {}
+
+		Object.keys(allCards).forEach((caKey) => {
+			if (allCards[caKey].id !== toBeRemovedCard.id) {
+				filteredInitialCard = {
+					...filteredInitialCard,
+					[`${caKey}`]: allCards[caKey],
+				}
+			}
+		})
+
+		setAllCards(filteredInitialCard)
+	}
+
 	return (
 		<Fragment>
 			<Header />
@@ -111,6 +140,7 @@ const App = () => {
 				onDeleteListHandler={onDeleteListHandler}
 				onAddCardHandler={onAddCardHandler}
 				onChangeCardHandler={onChangeCardHandler}
+				onDeleteCardHandler={onDeleteCardHandler}
 			/>
 		</Fragment>
 	)

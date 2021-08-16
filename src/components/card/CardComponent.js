@@ -1,22 +1,34 @@
 import React, {Fragment, useState} from 'react'
 import {Button, Card, Form, FormControl, InputGroup} from 'react-bootstrap'
 
-const CardComponent = ({allCards, cardKey, onChangeCardHandler}) => {
+const CardComponent = ({
+	allCards,
+	listsKey,
+	cardKey,
+	onChangeCardHandler,
+	onDeleteCardHandler,
+}) => {
 	const [show, setShow] = useState(false)
 	const [cardText, setCardText] = useState(allCards[cardKey].text)
 	return (
 		<Fragment>
-			<Card className='text-center m-2'>
+			<Card className=' m-2'>
 				<Card.Body>
 					<Card.Text>
-						<Form.Label>
-							{allCards[cardKey]?.text}{' '}
+						<Form.Label>{allCards[cardKey]?.text}</Form.Label>
+						<div style={{float: 'right'}}>
 							<i
-								style={{cursor: 'pointer', fontSize: 18}}
+								style={{cursor: 'pointer'}}
 								onClick={() => setShow(true)}
-								className='fas fa-edit'
+								className='fas fa-edit mr-1'
 							></i>{' '}
-						</Form.Label>
+							<i
+								style={{cursor: 'pointer'}}
+								onClick={() => onDeleteCardHandler(cardKey, listsKey)}
+								className='far fa-trash-alt ml-1'
+							></i>
+						</div>
+
 						{show ? (
 							<InputGroup className='mb-3'>
 								<FormControl
@@ -27,12 +39,21 @@ const CardComponent = ({allCards, cardKey, onChangeCardHandler}) => {
 
 								<InputGroup.Append>
 									<Button
+										style={{borderRadius: 0}}
+										onClick={(e) => {
+											setShow(false)
+										}}
+									>
+										<i class='fas fa-window-close'></i>
+									</Button>
+									<Button
+										style={{borderRadius: 0}}
 										onClick={(e) => {
 											onChangeCardHandler(cardKey, cardText)
 											setShow(false)
 										}}
 									>
-										Save
+										<i class='fas fa-save'></i>
 									</Button>
 								</InputGroup.Append>
 							</InputGroup>

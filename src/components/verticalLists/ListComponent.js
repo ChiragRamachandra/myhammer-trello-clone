@@ -10,6 +10,7 @@ const ListComponent = ({
 	onDeleteListHandler,
 	onAddCardHandler,
 	onChangeCardHandler,
+	onDeleteCardHandler,
 }) => {
 	const [show, setShow] = useState(false)
 	const [listTitle, setListTitle] = useState(allLists[listsKey].title)
@@ -29,7 +30,7 @@ const ListComponent = ({
 					<i
 						style={{cursor: 'pointer', fontSize: 18}}
 						onClick={() => onDeleteListHandler(listsKey)}
-						class='far fa-trash-alt'
+						className='far fa-trash-alt'
 					></i>
 				</h2>
 
@@ -62,6 +63,7 @@ const ListComponent = ({
 							cardKey={cardKey}
 							allCards={allCards}
 							onChangeCardHandler={onChangeCardHandler}
+							onDeleteCardHandler={onDeleteCardHandler}
 						/>
 					)
 				})}
@@ -81,7 +83,7 @@ const ListComponent = ({
 								setCardText('')
 							}}
 						>
-							<i class='fas fa-plus-square'></i> Card
+							<i className='fas fa-plus-square'></i> Card
 						</Button>
 					</InputGroup.Append>
 				</InputGroup>
