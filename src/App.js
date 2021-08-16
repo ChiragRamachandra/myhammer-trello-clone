@@ -52,6 +52,14 @@ const App = () => {
 		})
 	}
 
+	const onChangeListDetails = (ListKey, title) => {
+		// console.log('ListKey', ListKey)
+		// console.log('title', title)
+		let newCard = allLists[ListKey]
+		newCard.title = title
+		setAllLists({...allLists, [ListKey]: newCard})
+	}
+
 	return (
 		<Fragment>
 			<Header />
@@ -61,6 +69,7 @@ const App = () => {
 				allLists={allLists}
 				allCards={allCards}
 				onAddListHandler={onAddListHandler}
+				onChangeListDetails={onChangeListDetails}
 			/>
 		</Fragment>
 	)

@@ -1,12 +1,43 @@
-import React, {Fragment} from 'react'
-import {Col} from 'react-bootstrap'
+import React, {Fragment, useState} from 'react'
+import {Col, Button, InputGroup, FormControl} from 'react-bootstrap'
 import CardComponent from '../card/CardComponent'
 
-const ListComponent = ({allLists, allCards, listsKey}) => {
+const ListComponent = ({allLists, allCards, listsKey, onChangeListDetails}) => {
+	const [show, setShow] = useState(false)
+	const [listTitle, setListTitle] = useState(allLists[listsKey].title)
+
 	return (
 		<Fragment>
 			<Col style={{display: 'inline-block', float: 'none'}} xs={4}>
-				<h1>{allLists[listsKey]?.title}</h1>
+				<h2>
+					{allLists[listsKey]?.title}{' '}
+					<i
+						style={{cursor: 'pointer'}}
+						onClick={() => setShow(true)}
+						className='fas fa-edit'
+					></i>
+				</h2>
+
+				{show ? (
+					<InputGroup className='mb-3'>
+						<FormControl
+							value={listTitle}
+							placeholder='Enter Text'
+							onChange={(e) => setListTitle(e.target.value)}
+						/>
+
+						<InputGroup.Append>
+							<Button
+								onClick={(e) => {
+									onChangeListDetails(listsKey, listTitle)
+									setShow(false)
+								}}
+							>
+								Save
+							</Button>
+						</InputGroup.Append>
+					</InputGroup>
+				) : null}
 
 				{allLists[listsKey].cards.map((cardKey) => {
 					return (

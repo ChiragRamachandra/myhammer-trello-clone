@@ -12,8 +12,8 @@ import ListComponent from '../../components/verticalLists/ListComponent'
 const BoardPage = ({
 	allLists,
 	allCards,
-
 	onAddListHandler,
+	onChangeListDetails,
 }) => {
 	let displayColumn = []
 
@@ -26,6 +26,7 @@ const BoardPage = ({
 				listsKey={listsKey}
 				allLists={allLists}
 				allCards={allCards}
+				onChangeListDetails={onChangeListDetails}
 			/>,
 		]
 	})
