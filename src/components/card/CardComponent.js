@@ -1,14 +1,14 @@
 import React, {Fragment} from 'react'
 import {Card, Form} from 'react-bootstrap'
 
-const CardComponent = () => {
+const CardComponent = ({allLists, allCards, listsKey, cardKey}) => {
 	return (
 		<Fragment>
 			<Card className='text-center'>
 				<Card.Body>
-					<Card.Title>
-						<Form.Label>Card Details</Form.Label>
-					</Card.Title>
+					<Card.Text>
+						<Form.Label>{allCards[cardKey]?.text}</Form.Label>
+					</Card.Text>
 				</Card.Body>
 			</Card>
 		</Fragment>

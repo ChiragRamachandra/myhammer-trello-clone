@@ -6,9 +6,18 @@ const ListComponent = ({allLists, allCards, listsKey}) => {
 	return (
 		<Fragment>
 			<Col style={{display: 'inline-block', float: 'none'}} xs={4}>
-				<h1>{'Title'}</h1>
+				<h1>{allLists[listsKey]?.title}</h1>
 
-				<CardComponent allLists={allLists} allCards={allCards} />
+				{allLists[listsKey].cards.map((cardKey) => {
+					return (
+						<CardComponent
+							key={cardKey}
+							listsKey={listsKey}
+							cardKey={cardKey}
+							allCards={allCards}
+						/>
+					)
+				})}
 			</Col>
 		</Fragment>
 	)
