@@ -1,8 +1,15 @@
 import React, {Fragment} from 'react'
-import {Container, Row} from 'react-bootstrap'
+import {
+	Button,
+	Col,
+	Container,
+	Row,
+	InputGroup,
+	FormControl,
+} from 'react-bootstrap'
 import ListComponent from '../../components/verticalLists/ListComponent'
 
-const BoardPage = ({allLists, allCards}) => {
+const BoardPage = ({allLists, allCards, listName, setListName}) => {
 	let displayColumn = []
 	Object.keys(allLists).forEach(function (listsKey) {
 		displayColumn = [
@@ -18,8 +25,20 @@ const BoardPage = ({allLists, allCards}) => {
 	return (
 		<Fragment>
 			<Container>
-				<Row style={{overflowX: 'auto'}} className='flex-row flex-nowrap'>
+				<Row style={{overflowX: 'auto'}} className='flex-row flex-nowrap m-2'>
 					{displayColumn}
+					<Col style={{display: 'inline-block', float: 'none'}} xs={4}>
+						<InputGroup className='mb-3'>
+							<FormControl
+								placeholder='Add a new list'
+								value={listName}
+								onChange={(e) => setListName(e.targetvalue)}
+							/>
+							<InputGroup.Append>
+								<Button onClick={() => {}}>Add List</Button>
+							</InputGroup.Append>
+						</InputGroup>
+					</Col>
 				</Row>
 			</Container>
 		</Fragment>

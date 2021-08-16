@@ -32,12 +32,19 @@ const App = () => {
 	const [allLists, setallLists] = useState(initialLists)
 	const [allCards, setallCards] = useState(initialCards)
 
+	const [listName, setListName] = useState('')
+
 	return (
 		<Fragment>
 			<Header />
 
 			{/* passing down props through parent child relationship v/s context as this is a simple project and this helps for better readability */}
-			<BoardPage allLists={allLists} allCards={allCards} />
+			<BoardPage
+				allLists={allLists}
+				allCards={allCards}
+				listName={listName}
+				setListName={setListName}
+			/>
 		</Fragment>
 	)
 }
