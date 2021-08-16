@@ -14,6 +14,7 @@ const BoardPage = ({
 	allCards,
 	onAddListHandler,
 	onChangeListDetails,
+	onDeleteList,
 }) => {
 	let displayColumn = []
 
@@ -27,6 +28,7 @@ const BoardPage = ({
 				allLists={allLists}
 				allCards={allCards}
 				onChangeListDetails={onChangeListDetails}
+				onDeleteList={onDeleteList}
 			/>,
 		]
 	})

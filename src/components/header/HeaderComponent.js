@@ -5,7 +5,9 @@ const Header = () => {
 	return (
 		<div>
 			<Navbar bg='dark' variant='dark'>
-				<Navbar.Brand href='/'>Trello Clone</Navbar.Brand>
+				<Navbar.Brand style={{marginLeft: 10}} href='/'>
+					{'  '}Trello Clone
+				</Navbar.Brand>
 			</Navbar>
 		</div>
 	)

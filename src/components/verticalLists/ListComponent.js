@@ -2,7 +2,13 @@ import React, {Fragment, useState} from 'react'
 import {Col, Button, InputGroup, FormControl} from 'react-bootstrap'
 import CardComponent from '../card/CardComponent'
 
-const ListComponent = ({allLists, allCards, listsKey, onChangeListDetails}) => {
+const ListComponent = ({
+	allLists,
+	allCards,
+	listsKey,
+	onChangeListDetails,
+	onDeleteList,
+}) => {
 	const [show, setShow] = useState(false)
 	const [listTitle, setListTitle] = useState(allLists[listsKey].title)
 
@@ -12,9 +18,14 @@ const ListComponent = ({allLists, allCards, listsKey, onChangeListDetails}) => {
 				<h2>
 					{allLists[listsKey]?.title}{' '}
 					<i
-						style={{cursor: 'pointer'}}
+						style={{cursor: 'pointer', fontSize: 18}}
 						onClick={() => setShow(true)}
 						className='fas fa-edit'
+					></i>{' '}
+					<i
+						style={{cursor: 'pointer', fontSize: 18}}
+						onClick={() => onDeleteList(listsKey)}
+						class='far fa-trash-alt'
 					></i>
 				</h2>
 

@@ -34,7 +34,6 @@ const App = () => {
 
 	//lists crud operations
 	const onAddListHandler = (listName) => {
-		// console.log('listname', listName)
 		let highestListID = Object.values(allLists).sort((a, b) => {
 			return b.id - a.id
 		})
@@ -53,11 +52,26 @@ const App = () => {
 	}
 
 	const onChangeListDetails = (ListKey, title) => {
-		// console.log('ListKey', ListKey)
-		// console.log('title', title)
 		let newCard = allLists[ListKey]
 		newCard.title = title
 		setAllLists({...allLists, [ListKey]: newCard})
+	}
+
+	const onDeleteList = (ListKey) => {
+		let toBeRemovedList = allLists[ListKey]
+
+		let filteredInitialBoard = {}
+
+		Object.keys(allLists).forEach((boardKey) => {
+			if (allLists[boardKey].id !== toBeRemovedList.id) {
+				filteredInitialBoard = {
+					...filteredInitialBoard,
+					[`${boardKey}`]: allLists[boardKey],
+				}
+			}
+		})
+
+		setAllLists(filteredInitialBoard)
 	}
 
 	return (
@@ -70,6 +84,7 @@ const App = () => {
 				allCards={allCards}
 				onAddListHandler={onAddListHandler}
 				onChangeListDetails={onChangeListDetails}
+				onDeleteList={onDeleteList}
 			/>
 		</Fragment>
 	)
