@@ -1,6 +1,7 @@
 import React from 'react'
 import {Fragment, useState} from 'react'
-import Header from './components/header/Header'
+import Header from './components/header/HeaderComponent'
+import BoardPage from './pages/boardPage/BoardPage'
 
 let initialLists = {
 	'list-0': {
@@ -34,7 +35,9 @@ const App = () => {
 	return (
 		<Fragment>
 			<Header />
-			<h1>Trello Board</h1>
+
+			{/* passing down props through parent child relationship v/s context as this is a simple project and this helps for better readability */}
+			<BoardPage allLists={allLists} allCards={allCards} />
 		</Fragment>
 	)
 }

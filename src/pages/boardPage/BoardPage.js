@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Container, Row} from 'react-bootstrap'
 
-const BoardPage = () => {
+const BoardPage = ({allCards, allLists}) => {
 	return (
 		<Fragment>
 			<Container>
