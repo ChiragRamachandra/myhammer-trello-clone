@@ -27,10 +27,14 @@
 
 ## Implementation
 
-### Initial Setup
+### Approach to problem
 
 1. created new reactjs project using npx create react app my-app
 2. Decided to use react-bootstrap with a simplex theme to have consistency.
+3. Finished all crud operations for lists
+4. Finished all crud operation for cards
+5. Movement of cards between lists
+6. Local storage to ensure that state remains on refresh
 
 ## Steps to install
 
@@ -38,3 +42,18 @@
 2. Run the command npm install - which would add all the required dependencies.
 3. Ensure you have a working nodejs environment
 4. Run the command "npm start" or "npm run start" to start your local server.
+5. If you want to view it on vercel - please visit <https://myhammer-trello-clone.vercel.app/>
+
+## Additional Feature that could be included if not for 4 hour time limit
+
+1. Drag and drop of cards
+2. Drag and drop of lists - thereby fixing the issue of re arranging complete lists.
+3. Add date and time to tasks, using momentjs and alert if the date/time is past.
+4. Multiple boards.
+5. If there are multiple boards involved, use react lazy and suspense.
+6. If there are multiple boards involved, might use react context (or global state management like redux) instead of passing props to child components.
+7. Error Boundaries, react router and 404 pages etc could be done for multiple boards.
+8. Cards could store information like image, priority, comments and labels.
+9. Write test cases, the code might have to be refactored for test cases.
+10. Usage of react memo/ memoization if the card list is too big.
+11. Optimise css and load times. Improve seo using react helmet/ use nextjs for ssr.
