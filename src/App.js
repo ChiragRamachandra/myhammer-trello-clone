@@ -29,8 +29,16 @@ let initialCards = {
 
 const App = () => {
 	//all states and functions are maintaines here for better readability
-	const [allLists, setAllLists] = useState(initialLists)
-	const [allCards, setAllCards] = useState(initialCards)
+	const [allLists, setAllLists] = useState(
+		JSON.parse(localStorage.getItem('trello-lists'))
+			? JSON.parse(localStorage.getItem('trello-lists'))
+			: initialLists
+	)
+	const [allCards, setAllCards] = useState(
+		JSON.parse(localStorage.getItem('trello-cards'))
+			? JSON.parse(localStorage.getItem('trello-cards'))
+			: initialCards
+	)
 
 	//lists crud operations
 	const onAddListHandler = (listName) => {
@@ -49,12 +57,25 @@ const App = () => {
 			...allLists,
 			[`list-${objectLength}`]: newList,
 		})
+
+		localStorage.setItem(
+			'trello-lists',
+			JSON.stringify({
+				...allLists,
+				[`list-${objectLength}`]: newList,
+			})
+		)
 	}
 
 	const onChangeListHandler = (ListKey, title) => {
 		let newCard = allLists[ListKey]
 		newCard.title = title
 		setAllLists({...allLists, [ListKey]: newCard})
+
+		localStorage.setItem(
+			'trello-lists',
+			JSON.stringify({...allLists, [ListKey]: newCard})
+		)
 	}
 
 	const onDeleteListHandler = (ListKey) => {
@@ -71,7 +92,11 @@ const App = () => {
 		})
 
 		setAllLists(filteredInitialBoard)
+
+		localStorage.setItem('trello-lists', JSON.stringify(filteredInitialBoard))
 	}
+
+	//cards crud operations
 
 	const onAddCardHandler = (listKey, cardText) => {
 		let highestCardID = Object.values(allCards).sort((a, b) => {
