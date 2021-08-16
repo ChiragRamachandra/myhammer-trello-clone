@@ -6,11 +6,14 @@ const ListComponent = ({
 	allLists,
 	allCards,
 	listsKey,
-	onChangeListDetails,
-	onDeleteList,
+	onChangeListHandler,
+	onDeleteListHandler,
+	onAddCardHandler,
 }) => {
 	const [show, setShow] = useState(false)
 	const [listTitle, setListTitle] = useState(allLists[listsKey].title)
+
+	const [cardText, setCardText] = useState('')
 
 	return (
 		<Fragment>
@@ -24,7 +27,7 @@ const ListComponent = ({
 					></i>{' '}
 					<i
 						style={{cursor: 'pointer', fontSize: 18}}
-						onClick={() => onDeleteList(listsKey)}
+						onClick={() => onDeleteListHandler(listsKey)}
 						class='far fa-trash-alt'
 					></i>
 				</h2>
@@ -40,7 +43,7 @@ const ListComponent = ({
 						<InputGroup.Append>
 							<Button
 								onClick={(e) => {
-									onChangeListDetails(listsKey, listTitle)
+									onChangeListHandler(listsKey, listTitle)
 									setShow(false)
 								}}
 							>
@@ -60,6 +63,26 @@ const ListComponent = ({
 						/>
 					)
 				})}
+
+				<InputGroup className=' m-2'>
+					<FormControl
+						placeholder='Enter your task'
+						value={cardText}
+						onChange={(e) => {
+							setCardText(e.target.value)
+						}}
+					/>
+					<InputGroup.Append>
+						<Button
+							onClick={() => {
+								onAddCardHandler(listsKey, cardText)
+								setCardText('')
+							}}
+						>
+							<i class='fas fa-plus-square'></i> Card
+						</Button>
+					</InputGroup.Append>
+				</InputGroup>
 			</Col>
 		</Fragment>
 	)

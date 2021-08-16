@@ -13,8 +13,9 @@ const BoardPage = ({
 	allLists,
 	allCards,
 	onAddListHandler,
-	onChangeListDetails,
-	onDeleteList,
+	onChangeListHandler,
+	onDeleteListHandler,
+	onAddCardHandler,
 }) => {
 	let displayColumn = []
 
@@ -27,8 +28,9 @@ const BoardPage = ({
 				listsKey={listsKey}
 				allLists={allLists}
 				allCards={allCards}
-				onChangeListDetails={onChangeListDetails}
-				onDeleteList={onDeleteList}
+				onChangeListHandler={onChangeListHandler}
+				onDeleteListHandler={onDeleteListHandler}
+				onAddCardHandler={onAddCardHandler}
 			/>,
 		]
 	})
@@ -52,7 +54,7 @@ const BoardPage = ({
 										setListName('')
 									}}
 								>
-									Add List
+									<i class='fas fa-plus-square'></i>
 								</Button>
 							</InputGroup.Append>
 						</InputGroup>

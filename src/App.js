@@ -51,15 +51,14 @@ const App = () => {
 		})
 	}
 
-	const onChangeListDetails = (ListKey, title) => {
+	const onChangeListHandler = (ListKey, title) => {
 		let newCard = allLists[ListKey]
 		newCard.title = title
 		setAllLists({...allLists, [ListKey]: newCard})
 	}
 
-	const onDeleteList = (ListKey) => {
+	const onDeleteListHandler = (ListKey) => {
 		let toBeRemovedList = allLists[ListKey]
-
 		let filteredInitialBoard = {}
 
 		Object.keys(allLists).forEach((boardKey) => {
@@ -74,6 +73,25 @@ const App = () => {
 		setAllLists(filteredInitialBoard)
 	}
 
+	const onAddCardHandler = (listKey, cardText) => {
+		let highestCardID = Object.values(allCards).sort((a, b) => {
+			return b.id - a.id
+		})
+		let objectLength = highestCardID[0].id + 1
+		let newCard = {
+			text: cardText,
+			id: `${objectLength}`,
+		}
+
+		setAllCards({
+			...allCards,
+			[`card-${objectLength}`]: newCard,
+		})
+
+		//to add to list
+		allLists[listKey].cards.push(`card-${objectLength}`)
+	}
+
 	return (
 		<Fragment>
 			<Header />
@@ -83,8 +101,9 @@ const App = () => {
 				allLists={allLists}
 				allCards={allCards}
 				onAddListHandler={onAddListHandler}
-				onChangeListDetails={onChangeListDetails}
-				onDeleteList={onDeleteList}
+				onChangeListHandler={onChangeListHandler}
+				onDeleteListHandler={onDeleteListHandler}
+				onAddCardHandler={onAddCardHandler}
 			/>
 		</Fragment>
 	)
