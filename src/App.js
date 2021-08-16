@@ -42,10 +42,15 @@ const App = () => {
 
 	//lists crud operations
 	const onAddListHandler = (listName) => {
-		let highestListID = Object.values(allLists).sort((a, b) => {
-			return b.id - a.id
-		})
-		let objectLength = highestListID[0].id + 1
+		let highestListID = 0
+		let objectLength = 0
+
+		if (Object.keys(allLists).length > 0) {
+			highestListID = Object.values(allLists).sort((a, b) => {
+				return b.id - a.id
+			})
+			objectLength = highestListID[0].id + 1
+		}
 
 		let newList = {
 			title: `${listName}`,
@@ -99,10 +104,16 @@ const App = () => {
 	//cards crud operations
 
 	const onAddCardHandler = (listKey, cardText) => {
-		let highestCardID = Object.values(allCards).sort((a, b) => {
-			return b.id - a.id
-		})
-		let objectLength = highestCardID[0].id + 1
+		let highestCardID = 0
+		let objectLength = 0
+
+		if (Object.keys(allCards).length > 0) {
+			highestCardID = Object.values(allCards).sort((a, b) => {
+				return b.id - a.id
+			})
+			objectLength = highestCardID[0].id + 1
+		}
+
 		let newCard = {
 			text: cardText,
 			id: `${objectLength}`,
