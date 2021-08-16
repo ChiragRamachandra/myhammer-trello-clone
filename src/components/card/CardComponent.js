@@ -29,7 +29,9 @@ const CardComponent = ({
 			<Card className=' m-2'>
 				<Card.Body>
 					<Card.Text>
-						<Form.Label>{allCards[cardKey]?.text}</Form.Label>
+						<Form.Label>
+							<h4>{allCards[cardKey]?.text} </h4>
+						</Form.Label>
 						<div style={{float: 'right'}}>
 							<i
 								style={{cursor: 'pointer'}}
@@ -76,7 +78,7 @@ const CardComponent = ({
 						<br />
 
 						<div>
-							<Form.Label>Change Card Status</Form.Label>
+							<Form.Label>Move card to:</Form.Label>
 							<Form.Control
 								value={listsKey}
 								onChange={(e) =>

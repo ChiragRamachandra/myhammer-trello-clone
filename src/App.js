@@ -113,14 +113,27 @@ const App = () => {
 			[`card-${objectLength}`]: newCard,
 		})
 
+		localStorage.setItem(
+			'trello-cards',
+			JSON.stringify({
+				...allCards,
+				[`card-${objectLength}`]: newCard,
+			})
+		)
+
 		//to add to list
 		allLists[listKey].cards.push(`card-${objectLength}`)
+		localStorage.setItem('trello-lists', JSON.stringify(allLists))
 	}
 
 	const onChangeCardHandler = (cardKey, text) => {
 		let newCard = allCards[cardKey]
 		newCard.text = text
 		setAllCards({...allCards, [cardKey]: newCard})
+		localStorage.setItem(
+			'trello-cards',
+			JSON.stringify({...allCards, [cardKey]: newCard})
+		)
 	}
 
 	const onDeleteCardHandler = (cardKey, listKey) => {
@@ -134,6 +147,14 @@ const App = () => {
 				...allLists,
 				[`${listKey}`]: prevList,
 			})
+
+			localStorage.setItem(
+				'trello-lists',
+				JSON.stringify({
+					...allLists,
+					[`${listKey}`]: prevList,
+				})
+			)
 		}
 
 		let toBeRemovedCard = allCards[cardKey]
@@ -150,6 +171,7 @@ const App = () => {
 		})
 
 		setAllCards(filteredInitialCard)
+		localStorage.setItem('trello-cards', JSON.stringify(filteredInitialCard))
 	}
 
 	const onMoveCardHandler = (listKey, cardKey, previousListKey) => {
@@ -162,6 +184,14 @@ const App = () => {
 			[`${listKey}`]: newList,
 		})
 
+		localStorage.setItem(
+			'trello-lists',
+			JSON.stringify({
+				...allLists,
+				[`${listKey}`]: newList,
+			})
+		)
+
 		// remove from current list
 		let prevList = allLists[previousListKey]
 		prevList.cards = prevList.cards.filter((cardNumber) => {
@@ -172,6 +202,14 @@ const App = () => {
 			...allLists,
 			[`${previousListKey}`]: prevList,
 		})
+
+		localStorage.setItem(
+			'trello-lists',
+			JSON.stringify({
+				...allLists,
+				[`${previousListKey}`]: prevList,
+			})
+		)
 	}
 
 	return (

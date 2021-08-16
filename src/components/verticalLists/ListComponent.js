@@ -73,7 +73,7 @@ const ListComponent = ({
 
 				<InputGroup className=' m-2'>
 					<FormControl
-						placeholder='Enter your task'
+						placeholder='Enter your new task'
 						value={cardText}
 						onChange={(e) => {
 							setCardText(e.target.value)
